@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: api-financas-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: bd-apifinancas
+      MYSQL_USER: apifinancas
+      MYSQL_PASSWORD: apifinancas
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - api-financas-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: api-financas-phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: apifinancas
+      PMA_PASSWORD: apifinancas
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - api-financas-network
+
+networks:
+  api-financas-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
