@@ -4,7 +4,7 @@ services:
     container_name: api-financas-mysql
     restart: always
     environment:
-      MYSQL_DATABASE: bd-apifinancas
+      MYSQL_DATABASE: bd_apifinancas
       MYSQL_USER: apifinancas
       MYSQL_PASSWORD: apifinancas
       MYSQL_ROOT_PASSWORD: root
