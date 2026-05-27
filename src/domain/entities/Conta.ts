@@ -1,37 +1,45 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToOne,
+    JoinColumn
 } from "typeorm";
+import { Categoria } from "./Categoria";
 
 @Entity("contas")
 export class Conta {
-  @PrimaryGeneratedColumn()
-  id!: number;
 
-  @Column({ type: "varchar", length: 150 })
-  nome!: string;
+    @PrimaryGeneratedColumn()
+    id!: number;
 
-  @Column({ type: "text", nullable: true })
-  descricao?: string;
+    @Column({ type: "varchar", length: 150 })
+    nome!: string;
 
-  @Column({ type: "decimal", precision: 10, scale: 2 })
-  valor!: number;
+    @Column({ type: "text", nullable: true })
+    descricao?: string;
 
-  @Column({ type: "enum", enum: ["PAGAR", "RECEBER"] })
-  tipo!: "PAGAR" | "RECEBER";
+    @Column({ type: "decimal", precision: 10, scale: 2 })
+    valor!: number;
 
-  @Column({ type: "date" })
-  dataVencimento!: string;
+    @Column({ type: "enum", enum: ["PAGAR", "RECEBER"] })
+    tipo!: "PAGAR" | "RECEBER";
 
-  @Column({ type: "boolean", default: false })
-  pago!: boolean;
+    @Column({ type: "date" })
+    dataVencimento!: string;
 
-  @CreateDateColumn()
-  criadoEm!: Date;
+    @Column({ type: "boolean", default: false })
+    pago!: boolean;
 
-  @CreateDateColumn()
-  atualizadoEm!: Date;
+    @CreateDateColumn()
+    criadoEm!: Date;
+
+    @UpdateDateColumn()
+    atualizadoEm!: Date;
+
+    @ManyToOne(() => Categoria, categoria => categoria.contas)
+    @JoinColumn({ name: 'categoriaId' }) //Foreign key
+    categoria!: Categoria;
 }
