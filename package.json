@@ -10,15 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/renansantanax/api-financas.git"
+    "url": "git+https://github.com/sergiocotiazure20262-lang/api-financas.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/renansantanax/api-financas/issues"
+    "url": "https://github.com/sergiocotiazure20262-lang/api-financas/issues"
   },
-  "homepage": "https://github.com/renansantanax/api-financas#readme",
+  "homepage": "https://github.com/sergiocotiazure20262-lang/api-financas#readme",
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
