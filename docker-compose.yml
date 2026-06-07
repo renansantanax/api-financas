@@ -1,11 +1,31 @@
 services:
 
+  api:
+    build: .
+    container_name: apifinancas_api
+    ports:
+      - "3002:3000"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=apifinancas
+      - DB_PASSWORD=apifinancas
+      - DB_NAME=bd_apifinancas
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    networks:
+      - api-financas-network
+
   mysql:
     image: mysql:8.0
     container_name: api-financas-mysql
     restart: always
     environment:
-      MYSQL_DATABASE: bd-apifinancas
+      MYSQL_DATABASE: bd_apifinancas
       MYSQL_USER: apifinancas
       MYSQL_PASSWORD: apifinancas
       MYSQL_ROOT_PASSWORD: root
